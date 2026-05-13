@@ -1,0 +1,18 @@
+[project]
+name = "canary"
+version = "0.1.0"
+description = "Multi-agent supply chain early warning system"
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=0.101.0",
+    "chromadb>=1.5.9",
+    "fastapi>=0.136.1",
+    "langchain-anthropic>=1.4.3",
+    "langgraph>=1.2.0",
+    "pandas>=3.0.3",
+    "pydantic>=2.13.4",
+    "python-dotenv>=1.2.2",
+    "rich>=15.0.0",
+    "sentence-transformers>=5.5.0",
+    "uvicorn>=0.46.0",
+]
