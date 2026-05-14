@@ -1,7 +1,6 @@
-import json
 from concurrent.futures import ThreadPoolExecutor
 from anthropic import Anthropic
-from .base import AgentOutput
+from .base import AgentOutput, parse_json
 from .risk     import RiskSensingAgent
 from .demand   import DemandForecastAgent
 from .supplier import SupplierIntelAgent
@@ -61,7 +60,7 @@ Return JSON:
 }}"""
             }]
         )
-        return json.loads(resp.content[0].text.strip())
+        return parse_json(resp.content[0].text)
 
     def _gate(self, confidence: float) -> str:
         if confidence >= CONFIDENCE_THRESHOLDS["auto_execute"]:
