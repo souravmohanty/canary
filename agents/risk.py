@@ -1,6 +1,5 @@
-import json
 from anthropic import Anthropic
-from .base import BaseAgent, AgentOutput
+from .base import BaseAgent, AgentOutput, parse_json
 from tools.signal_api import search_signals
 
 client = Anthropic()
@@ -36,7 +35,7 @@ Return JSON with this exact schema:
 }}"""
             }]
         )
-        data = json.loads(resp.content[0].text.strip())
+        data = parse_json(resp.content[0].text)
         return AgentOutput(
             agent_name=self.name,
             confidence=data["confidence"],

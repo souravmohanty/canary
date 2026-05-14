@@ -1,6 +1,17 @@
+import json
+import re
 from abc import ABC, abstractmethod
 from typing import Any
 from pydantic import BaseModel
+
+
+def parse_json(text: str) -> dict:
+    """Parse JSON from model output, stripping markdown code fences if present."""
+    text = text.strip()
+    # Strip ```json ... ``` or ``` ... ``` fences
+    text = re.sub(r"^```(?:json)?\s*", "", text)
+    text = re.sub(r"\s*```$", "", text)
+    return json.loads(text.strip())
 
 
 class AgentOutput(BaseModel):

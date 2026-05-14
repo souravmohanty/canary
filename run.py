@@ -1,12 +1,13 @@
+# load_dotenv MUST run before any agent imports so Anthropic() picks up the key
+from dotenv import load_dotenv
+load_dotenv(override=True)
+
 from rich.console import Console
 from rich.table import Table
 from rich import box
-from dotenv import load_dotenv
 from data.signals import generate_signals
 from store.vector_store import get_store
 from graph import canary_graph
-
-load_dotenv()
 
 console = Console()
 
